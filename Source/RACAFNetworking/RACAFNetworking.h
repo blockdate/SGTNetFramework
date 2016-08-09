@@ -6,7 +6,5 @@
 //  Copyright (c) 2013 CodaFi. All rights reserved.
 //
 
-#import "AFHTTPRequestOperationManager+RACSupport.h"
-#import "AFURLConnectionOperation+RACSupport.h"
 #import "AFHTTPSessionManager+RACSupport.h"
 

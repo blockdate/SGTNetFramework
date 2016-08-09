@@ -385,7 +385,6 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         if (block) {
             block(uploadProgress);
-//            block(uploadProgress.completedUnitCount,uploadProgress.completedUnitCount,uploadProgress.totalUnitCount);
         }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
