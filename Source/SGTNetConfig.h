@@ -23,7 +23,7 @@ typedef NSURLSessionDataTask SGTRequestOperation;
  *
  *  @param response 服务端返回的数据类型，通常是字典
  */
-typedef void(^SGTResponseSuccess)(id _Nullable response);
+typedef void(^SGTResponseSuccess)(id _Nonnull response);
 
 /*!
  *  @author block, 15-11-15 13:11:59
