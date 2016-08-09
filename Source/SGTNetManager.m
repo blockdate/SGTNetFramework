@@ -6,7 +6,7 @@
 //  Copyright © 2015年 block. All rights reserved.
 //
 
-#import "SGTNetworking.h"
+#import "SGTNetManager.h"
 #import <AFNetworking.h>
 #import "AFNetworkActivityIndicatorManager.h"
 #import "NSFileManager+pathMethod.h"
@@ -27,11 +27,11 @@ static SGTNetworkStatus kNetworkStatus = SGTNetworkStatusUnknown;
 static NSMutableArray<SGTRequestOperation *> *allRequestTasks;
 static NSUInteger kMaxCacheSize = 0;
 
-@interface SGTNetworking()
+@interface SGTNetManager()
 
 @end
 
-@implementation SGTNetworking
+@implementation SGTNetManager
 
 #pragma mark - Class Net Methord
 
@@ -156,7 +156,7 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
 //        无网络时，读取缓存，直接返回
         if (kShouldLoadCacheWhenNetUNAvaliable) {
             if (kNetworkStatus == SGTNetworkStatusNotReachable) {
-                id response = [SGTNetworking cahceResponseWithURL:requestURL
+                id response = [SGTNetManager cahceResponseWithURL:requestURL
                                                        parameters:params];
                 if (response) {
                     if (success) {
@@ -174,7 +174,7 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
         }
 //        使用缓存，直接返回
         if (!refreshCache) {
-            id response = [SGTNetworking cahceResponseWithURL:requestURL
+            id response = [SGTNetManager cahceResponseWithURL:requestURL
                                                    parameters:params];
             if (response) {
                 if (success) {
@@ -209,7 +209,7 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
         [[self allTasks] removeObject:task];
         
         if ([error code] < 0 && useCache) {// 获取缓存
-            id response = [SGTNetworking cahceResponseWithURL:requestURL
+            id response = [SGTNetManager cahceResponseWithURL:requestURL
                                                    parameters:params];
             if (response) {
                 if (success) {

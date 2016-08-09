@@ -21,8 +21,8 @@
 		E199A2491D597BD80097B960 /* SGTNetworking+RACSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = E199A23B1D597BD80097B960 /* SGTNetworking+RACSupport.h */; };
 		E199A24A1D597BD80097B960 /* SGTNetworking+RACSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E199A23C1D597BD80097B960 /* SGTNetworking+RACSupport.m */; };
 		E199A24B1D597BD80097B960 /* SGTNetConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = E199A23D1D597BD80097B960 /* SGTNetConfig.h */; };
-		E199A24C1D597BD80097B960 /* SGTNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = E199A23E1D597BD80097B960 /* SGTNetworking.h */; };
-		E199A24D1D597BD80097B960 /* SGTNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = E199A23F1D597BD80097B960 /* SGTNetworking.m */; };
+		E199A24C1D597BD80097B960 /* SGTNetManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E199A23E1D597BD80097B960 /* SGTNetManager.h */; };
+		E199A24D1D597BD80097B960 /* SGTNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E199A23F1D597BD80097B960 /* SGTNetManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,8 +42,8 @@
 		E199A23B1D597BD80097B960 /* SGTNetworking+RACSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SGTNetworking+RACSupport.h"; sourceTree = "<group>"; };
 		E199A23C1D597BD80097B960 /* SGTNetworking+RACSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SGTNetworking+RACSupport.m"; sourceTree = "<group>"; };
 		E199A23D1D597BD80097B960 /* SGTNetConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTNetConfig.h; sourceTree = "<group>"; };
-		E199A23E1D597BD80097B960 /* SGTNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTNetworking.h; sourceTree = "<group>"; };
-		E199A23F1D597BD80097B960 /* SGTNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTNetworking.m; sourceTree = "<group>"; };
+		E199A23E1D597BD80097B960 /* SGTNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTNetManager.h; sourceTree = "<group>"; };
+		E199A23F1D597BD80097B960 /* SGTNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTNetManager.m; sourceTree = "<group>"; };
 		E1C61CAD7158C40910926DB8 /* Pods-SGTNetFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SGTNetFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SGTNetFramework/Pods-SGTNetFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		FBD23BE1BDFAAE80C8334B41 /* Pods-SGTNetFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SGTNetFramework.release.xcconfig"; path = "Pods/Target Support Files/Pods-SGTNetFramework/Pods-SGTNetFramework.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,8 +111,8 @@
 				E199A2301D597BD80097B960 /* Category */,
 				E199A2351D597BD80097B960 /* RACAFNetworking */,
 				E199A23D1D597BD80097B960 /* SGTNetConfig.h */,
-				E199A23E1D597BD80097B960 /* SGTNetworking.h */,
-				E199A23F1D597BD80097B960 /* SGTNetworking.m */,
+				E199A23E1D597BD80097B960 /* SGTNetManager.h */,
+				E199A23F1D597BD80097B960 /* SGTNetManager.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -157,7 +157,7 @@
 				E199A2491D597BD80097B960 /* SGTNetworking+RACSupport.h in Headers */,
 				E199A2401D597BD80097B960 /* NSFileManager+pathMethod.h in Headers */,
 				E199A24B1D597BD80097B960 /* SGTNetConfig.h in Headers */,
-				E199A24C1D597BD80097B960 /* SGTNetworking.h in Headers */,
+				E199A24C1D597BD80097B960 /* SGTNetManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +265,7 @@
 			files = (
 				E199A2451D597BD80097B960 /* AFHTTPSessionManager+RACSupport.m in Sources */,
 				E199A24A1D597BD80097B960 /* SGTNetworking+RACSupport.m in Sources */,
-				E199A24D1D597BD80097B960 /* SGTNetworking.m in Sources */,
+				E199A24D1D597BD80097B960 /* SGTNetManager.m in Sources */,
 				E199A2431D597BD80097B960 /* RACSignal+ReturnSignalExtension.m in Sources */,
 				E199A2411D597BD80097B960 /* NSFileManager+pathMethod.m in Sources */,
 				E199A2481D597BD80097B960 /* RACSubscriber+AFProgressCallbacks.m in Sources */,

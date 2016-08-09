@@ -9,7 +9,9 @@
 #import "SGTNetworking+RACSupport.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <AFNetworking.h>
-@implementation SGTNetworking (RACSupport)
+#import "SGTNetManager.h"
+
+@implementation SGTNetManager (RACSupport)
 
 + (RACSignal *)rac_GET:(NSString *)path parameters:(id)parameters {
     return [[self rac_requestPath:path parameters:parameters method:@"GET"]
@@ -28,12 +30,12 @@
 
 + (RACSignal *)rac_POST:(NSString *)path parameters:(id)parameters constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block {
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        AFHTTPSessionManager *manager = [SGTNetworking sessionManager];
+        AFHTTPSessionManager *manager = [SGTNetManager sessionManager];
         NSString *url = path;
-        if ([SGTNetworking shouldEncode]) {
-            url = [SGTNetworking encodeUrl:path];
+        if ([SGTNetManager shouldEncode]) {
+            url = [SGTNetManager encodeUrl:path];
         }
-        NSMutableURLRequest *request = [manager.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:[[NSURL URLWithString:path relativeToURL:[NSURL URLWithString:SGTNetworking.baseUrl]] absoluteString] parameters:parameters constructingBodyWithBlock:block error:nil];
+        NSMutableURLRequest *request = [manager.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:[[NSURL URLWithString:path relativeToURL:[NSURL URLWithString:SGTNetManager.baseUrl]] absoluteString] parameters:parameters constructingBodyWithBlock:block error:nil];
         NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             if (error) {
                 NSMutableDictionary *userInfo = [error.userInfo mutableCopy];
@@ -72,12 +74,12 @@
 
 + (RACSignal *)rac_requestPath:(NSString *)path parameters:(id)parameters method:(NSString *)method {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        AFHTTPSessionManager *manager = [SGTNetworking sessionManager];
+        AFHTTPSessionManager *manager = [SGTNetManager sessionManager];
         NSString *url = path;
-        if ([SGTNetworking shouldEncode]) {
-            url = [SGTNetworking encodeUrl:path];
+        if ([SGTNetManager shouldEncode]) {
+            url = [SGTNetManager encodeUrl:path];
         }
-        NSURLRequest *request = [manager.requestSerializer requestWithMethod:method URLString:[[NSURL URLWithString:path relativeToURL:[NSURL URLWithString:SGTNetworking.baseUrl]] absoluteString] parameters:parameters error:nil];
+        NSURLRequest *request = [manager.requestSerializer requestWithMethod:method URLString:[[NSURL URLWithString:path relativeToURL:[NSURL URLWithString:SGTNetManager.baseUrl]] absoluteString] parameters:parameters error:nil];
         NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             if (error) {
                 NSMutableDictionary *userInfo = [error.userInfo mutableCopy];
@@ -85,13 +87,13 @@
                     userInfo[@"responseObject"] = responseObject;
                 }
                 NSError *errorWithRes = [NSError errorWithDomain:error.domain code:error.code userInfo:[userInfo copy]];
-                if ([SGTNetworking isDebug]) {
-                    [SGTNetworking logWithSuccessResponse:responseObject url:url params:parameters];
+                if ([SGTNetManager isDebug]) {
+                    [SGTNetManager logWithSuccessResponse:responseObject url:url params:parameters];
                 }
                 [subscriber sendError:errorWithRes];
             } else {
-                if ([SGTNetworking isDebug]) {
-                    [SGTNetworking logWithFailError:error url:url params:parameters];
+                if ([SGTNetManager isDebug]) {
+                    [SGTNetManager logWithFailError:error url:url params:parameters];
                 }
                 [subscriber sendNext:RACTuplePack(responseObject, response)];
                 [subscriber sendCompleted];

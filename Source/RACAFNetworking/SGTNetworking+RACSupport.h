@@ -6,12 +6,12 @@
 //  Copyright © 2016年 block. All rights reserved.
 //
 
-#import "SGTNetworking.h"
+#import "SGTNetManager.h"
 #import <AFURLRequestSerialization.h>
 
 @class RACSignal;
 
-@interface SGTNetworking (RACSupport)
+@interface SGTNetManager (RACSupport)
 
 
 /**

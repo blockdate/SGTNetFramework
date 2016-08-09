@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, SGTNetworkStatus) {
     SGTNetworkStatusReachableViaWiFi = 2,//WIFI网络
 };
 
-@interface SGTNetworking : NSObject
+@interface SGTNetManager : NSObject
 
 /**
  @author block, 16-05-12 15:05:00

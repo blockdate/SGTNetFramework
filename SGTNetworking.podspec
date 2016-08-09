@@ -91,7 +91,7 @@ Pod::Spec.new do |s|
   s.source_files  = "Source", "Source/**/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
 
-  s.public_header_files = "Source/SGTNetworking.h", "Source/RACAFNetworking/**/*.h"
+  s.public_header_files = "Source/SGTNetManager.h", "Source/RACAFNetworking/**/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
