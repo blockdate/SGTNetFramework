@@ -169,7 +169,7 @@ typedef NS_ENUM(NSInteger, SGTNetworkStatus) {
                                 filename:(NSString * _Nonnull)filename
                                     name:(NSString * _Nonnull)name
                                   params:(id _Nullable)params
-                           ProgressBlock:(void (^_Nonnull)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))block
+                           ProgressBlock:(void (^ _Nullable)(NSProgress * _Nonnull uploadProgress))block
                                  success:(SGTResponseSuccess _Nullable)success
                                     fail:(SGTResponseFail _Nullable)fail;
 

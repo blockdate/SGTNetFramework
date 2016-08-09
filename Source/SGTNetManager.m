@@ -361,7 +361,7 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
                                 filename:(NSString *)filename
                                     name:(NSString *)name
                                   params:(id)params
-                           ProgressBlock:(void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))block
+                           ProgressBlock:(void (^)(NSProgress *uploadProgress))block
                                  success:(SGTResponseSuccess)success
                                     fail:(SGTResponseFail)fail {
     if ([self shouldEncode]) {
@@ -384,7 +384,8 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
         [formData appendPartWithFileData:imageData name:name fileName:imageFileName mimeType:@"image/jpeg"];
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         if (block) {
-            block(uploadProgress.completedUnitCount,uploadProgress.completedUnitCount,uploadProgress.totalUnitCount);
+            block(uploadProgress);
+//            block(uploadProgress.completedUnitCount,uploadProgress.completedUnitCount,uploadProgress.totalUnitCount);
         }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
