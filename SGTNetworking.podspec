@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SGTNetworking"
-  s.version      = "1.1.1"
+  s.version      = "1.0.0"
   s.summary      = "This is a private pod sp. provide Network function."
 
   # This description is used to generate tags and improve search results.
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-  This is a private pod sp. provide Network function.
+  This is a private Podspec. Provide network function. Base on AFNetworking and ReactiveCocoa
                    DESC
 
   s.homepage     = "https://github.com/blockdate/SGTNetFramework"
