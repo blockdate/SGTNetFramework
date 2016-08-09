@@ -7,7 +7,7 @@
 //
 
 #import "SGTNetManager.h"
-#import <AFNetworking.h>
+#import "AFNetworking.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "NSFileManager+pathMethod.h"
 #import <CommonCrypto/CommonDigest.h>

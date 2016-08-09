@@ -8,7 +8,7 @@
 
 #import "SGTNetworking+RACSupport.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <AFNetworking.h>
+#import "AFNetworking.h"
 #import "SGTNetManager.h"
 
 @implementation SGTNetManager (RACSupport)
