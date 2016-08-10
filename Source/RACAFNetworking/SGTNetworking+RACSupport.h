@@ -7,7 +7,7 @@
 //
 
 #import "SGTNetManager.h"
-#import "AFURLRequestSerialization.h"
+#import <AFNetworking/AFURLRequestSerialization.h>
 
 @class RACSignal;
 
