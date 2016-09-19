@@ -196,6 +196,17 @@ typedef NS_ENUM(NSInteger, SGTNetworkStatus) {
 /**
  *  @author block
  *
+ *  设置网络请求头解析数据类型
+ *
+ *  @param type 数据格式类型
+ *
+ *  @since 1.0.4
+ */
++ (void)updateHeaderSerializer:(SGTNetRequestType)type;
+
+/**
+ *  @author block
+ *
  *  缓存总大小
  *
  *  @return 缓存大小

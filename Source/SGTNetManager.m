@@ -21,6 +21,7 @@
 static NSString *kPrivateNetworkBaseUrl = nil;
 static BOOL kIsEnableInterfaceDebug = NO;
 static BOOL kShouldAutoEncode = YES;
+static SGTNetRequestType kHeaderSerializer = SGTNetRequestTypeJSON;
 static NSDictionary *kHttpHeaders = nil;
 static BOOL kShouldLoadCacheWhenNetUNAvaliable = false;
 static SGTNetworkStatus kNetworkStatus = SGTNetworkStatusUnknown;
@@ -59,6 +60,10 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
 
 + (NSString *)baseUrl {
     return kPrivateNetworkBaseUrl;
+}
+
++ (void)updateHeaderSerializer:(SGTNetRequestType)type {
+    kHeaderSerializer = type;
 }
 
 + (void)enableInterfaceDebug:(BOOL)isDebug {
@@ -641,12 +646,14 @@ static AFHTTPSessionManager *manager = nil;
         
         manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
 
-        AFJSONRequestSerializer *headSerializer = [AFJSONRequestSerializer serializer];
-        [headSerializer setTimeoutInterval:10];
-
-        manager.requestSerializer = headSerializer;
+        if (kHeaderSerializer == SGTNetRequestTypeJSON) {
+            AFJSONRequestSerializer *headSerializer = [AFJSONRequestSerializer serializer];
+            [headSerializer setTimeoutInterval:10];
+            manager.requestSerializer = headSerializer;
+            manager.requestSerializer.stringEncoding = NSUTF8StringEncoding;
+        }
+        
         manager.responseSerializer = [AFJSONResponseSerializer serializer];
-        manager.requestSerializer.stringEncoding = NSUTF8StringEncoding;
         
         for (NSString *key in kHttpHeaders.allKeys) {
             if (kHttpHeaders[key] != nil) {
