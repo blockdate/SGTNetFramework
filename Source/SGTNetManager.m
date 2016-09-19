@@ -7,8 +7,8 @@
 //
 
 #import "SGTNetManager.h"
-#import "AFNetworking.h"
-#import "AFNetworkActivityIndicatorManager.h"
+#import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import "NSFileManager+pathMethod.h"
 #import <CommonCrypto/CommonDigest.h>
 
@@ -22,6 +22,7 @@ static NSString *kPrivateNetworkBaseUrl = nil;
 static BOOL kIsEnableInterfaceDebug = NO;
 static BOOL kShouldAutoEncode = YES;
 static SGTNetRequestType kHeaderSerializer = SGTNetRequestTypeJSON;
+static SGTNetRequestType kResponseSerializer = SGTNetRequestTypeJSON;
 static NSDictionary *kHttpHeaders = nil;
 static BOOL kShouldLoadCacheWhenNetUNAvaliable = false;
 static SGTNetworkStatus kNetworkStatus = SGTNetworkStatusUnknown;
@@ -64,6 +65,28 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
 
 + (void)updateHeaderSerializer:(SGTNetRequestType)type {
     kHeaderSerializer = type;
+    if (manager != nil) {
+        if (type == SGTNetRequestTypeJSON) {
+            AFHTTPRequestSerializer *responseSerializer = [AFJSONRequestSerializer serializer];
+            manager.requestSerializer = responseSerializer;
+        }else {
+            AFHTTPRequestSerializer *responseSerializer = [AFHTTPRequestSerializer serializer];
+            manager.requestSerializer = responseSerializer;
+        }
+    }
+}
+
++ (void)updateResponseSerializer:(SGTNetRequestType)type {
+    kResponseSerializer = type;
+    if (manager != nil) {
+        if (type == SGTNetRequestTypeJSON) {
+            AFHTTPResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+            manager.responseSerializer = responseSerializer;
+        }else {
+            AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
+            manager.responseSerializer = responseSerializer;
+        }
+    }
 }
 
 + (void)enableInterfaceDebug:(BOOL)isDebug {
