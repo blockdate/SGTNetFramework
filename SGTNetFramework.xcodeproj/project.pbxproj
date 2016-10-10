@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		524D6FE20215D60C787C27A5 /* Pods_SGTNetFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6312D4B9AA74174759C833 /* Pods_SGTNetFramework.framework */; };
+		6082BD281DAB86D800145755 /* SGTNetworking.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 6082BD271DAB86D800145755 /* SGTNetworking.podspec */; };
 		E199A2281D597B960097B960 /* SGTNetFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = E199A2271D597B960097B960 /* SGTNetFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E199A2401D597BD80097B960 /* NSFileManager+pathMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = E199A2311D597BD80097B960 /* NSFileManager+pathMethod.h */; };
 		E199A2411D597BD80097B960 /* NSFileManager+pathMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = E199A2321D597BD80097B960 /* NSFileManager+pathMethod.m */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6082BD271DAB86D800145755 /* SGTNetworking.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SGTNetworking.podspec; sourceTree = "<group>"; };
 		DD6312D4B9AA74174759C833 /* Pods_SGTNetFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SGTNetFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E199A2241D597B960097B960 /* SGTNetFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SGTNetFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E199A2271D597B960097B960 /* SGTNetFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGTNetFramework.h; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		E199A21A1D597B960097B960 = {
 			isa = PBXGroup;
 			children = (
+				6082BD271DAB86D800145755 /* SGTNetworking.podspec */,
 				E199A22F1D597BD80097B960 /* Source */,
 				E199A2261D597B960097B960 /* SGTNetFramework */,
 				E199A2251D597B960097B960 /* Products */,
@@ -220,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6082BD281DAB86D800145755 /* SGTNetworking.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

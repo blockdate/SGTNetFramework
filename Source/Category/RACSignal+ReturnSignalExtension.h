@@ -8,7 +8,7 @@
 
 //#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <UIKit/UIKit.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 @interface RACSignal (ReturnSignalExtension)
 
