@@ -16,8 +16,8 @@
  *
  *  @return 是否超时
  */
-+(BOOL)isTimeOutWithPath:(NSString *)path time:(NSTimeInterval)time;
++(BOOL)sgt_isTimeOutWithPath:(NSString *)path time:(NSTimeInterval)time;
 
-+(long long)fileSizeAt:(NSString *)path;
++(long long)sgt_fileSizeAt:(NSString *)path;
 
 @end

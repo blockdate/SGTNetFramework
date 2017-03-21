@@ -10,7 +10,7 @@
 
 @implementation NSFileManager (pathMethod)
 
-+(BOOL)isTimeOutWithPath:(NSString *)path time:(NSTimeInterval)time{
++(BOOL)sgt_isTimeOutWithPath:(NSString *)path time:(NSTimeInterval)time{
     //    路径不存在
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]){
         return YES;
@@ -38,7 +38,7 @@
     }
 }
 
-+(long long)fileSizeAt:(NSString *)path {
++(long long)sgt_fileSizeAt:(NSString *)path {
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]){
         NSLog(@"file not exist at %@",path);
         return 0;
