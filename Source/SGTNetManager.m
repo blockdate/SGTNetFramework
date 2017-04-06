@@ -11,6 +11,7 @@
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import "NSFileManager+pathMethod.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "NSFileManager+pathMethod.h"
 
 #ifdef DEBUG
 #define DebugLog(s, ... ) NSLog( @"[%@：in line: %d]-->[message: %@]", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
@@ -436,6 +437,16 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
 
 #pragma mark - DATA Stands
 
++ (BOOL)isCacheOutOfTimeForURL:(NSString *)url params:(id)params limitTime:(NSTimeInterval)time {
+    NSString *path = [self cachePathForURL:url params:params];
+    return [NSFileManager sgt_isTimeOutWithPath:path time:time];
+}
+
++ (NSTimeInterval)cacheTimeIntervalForURL:(NSString *)url params:(id)params {
+    NSString *path = [self cachePathForURL:url params:params];
+    return [NSFileManager sgt_fileExistTime:path];
+}
+
 static inline NSString *cachePath() {
     return [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches/NetworkingCaches"];
 }
@@ -481,15 +492,12 @@ static inline NSString *cachePath() {
     return total;
 }
 
-+ (id)cahceResponseWithURL:(NSString *)url parameters:params {
++ (id)cahceResponseWithURL:(NSString *)url parameters:(id)params {
     id cacheData = nil;
     if (url) {
         // Try to get datas from disk
-        NSString *directoryPath = cachePath();
-        NSString *absoluteURL = [self generateGETAbsoluteURL:url params:params];
-        NSString *key = [self md5_string:absoluteURL];
-        NSString *path = [directoryPath stringByAppendingPathComponent:key];
         
+        NSString *path = [self cachePathForURL:url params:params];
         NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
         if (data) {
             cacheData = data;
@@ -497,6 +505,14 @@ static inline NSString *cachePath() {
         }
     }
     return cacheData;
+}
+
++ (NSString *)cachePathForURL:(NSString *)url params:(id)params {
+    NSString *directoryPath = cachePath();
+    NSString *absoluteURL = [self generateGETAbsoluteURL:url params:params];
+    NSString *key = [self md5_string:absoluteURL];
+    NSString *path = [directoryPath stringByAppendingPathComponent:key];
+    return path;
 }
 
 + (void)cacheResponseObject:(id)responseObject request:(NSURLRequest *)request parameters:params {

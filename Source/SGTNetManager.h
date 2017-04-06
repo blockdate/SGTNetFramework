@@ -218,6 +218,20 @@ typedef NS_ENUM(NSInteger, SGTNetworkStatus) {
 /**
  *  @author block
  *
+ *  获取指定地址的缓存时长, 返回-1表示文件未找到
+ *
+ *  @param url 请求URL
+ *  @param params 参数数据
+ *  @return 缓存时长度
+ *  @since 2.0.2
+ */
++ (NSTimeInterval)cacheTimeIntervalForURL:(NSString * _Nonnull)url params:(id _Nullable)params;
+
++ (BOOL)isCacheOutOfTimeForURL:(NSString * _Nonnull)url params:(id _Nullable)params limitTime:(NSTimeInterval)time;
+
+/**
+ *  @author block
+ *
  *  缓存总大小
  *
  *  @return 缓存大小

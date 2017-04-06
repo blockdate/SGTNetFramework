@@ -12,3 +12,8 @@ target 'SGTNetFramework' do
     pod 'ReactiveObjC'
     pod 'AFNetworking'
 end
+
+target 'SGTNetFrameworkTests' do
+    pod 'ReactiveObjC'
+    pod 'AFNetworking'
+end

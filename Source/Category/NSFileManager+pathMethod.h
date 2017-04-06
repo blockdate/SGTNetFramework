@@ -20,4 +20,6 @@
 
 +(long long)sgt_fileSizeAt:(NSString *)path;
 
++ (NSTimeInterval)sgt_fileExistTime:(NSString *)path;
+
 @end

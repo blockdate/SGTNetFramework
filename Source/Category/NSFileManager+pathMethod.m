@@ -10,6 +10,17 @@
 
 @implementation NSFileManager (pathMethod)
 
++ (NSTimeInterval)sgt_fileExistTime:(NSString *)path {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]){
+        return -1;
+    }
+    
+    NSDictionary *dic =[[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil];
+    //NSFileModificationDate 获取文件的修改时间
+    NSDate *date =[dic objectForKey:NSFileModificationDate];
+    return [date timeIntervalSince1970];
+}
+
 +(BOOL)sgt_isTimeOutWithPath:(NSString *)path time:(NSTimeInterval)time{
     //    路径不存在
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]){
