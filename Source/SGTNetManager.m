@@ -182,7 +182,7 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
     }
     NSString *requestURL = [self _requestURLFromUrl:url];
     if (useCache) {
-//        无网络时，读取缓存，直接返回
+        //        无网络时，读取缓存，直接返回
         if (kShouldLoadCacheWhenNetUNAvaliable) {
             if (kNetworkStatus == SGTNetworkStatusNotReachable) {
                 id response = [SGTNetManager cahceResponseWithURL:requestURL
@@ -201,7 +201,7 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
                 }
             }
         }
-//        使用缓存，直接返回
+        //        使用缓存，直接返回
         if (!refreshCache) {
             id response = [SGTNetManager cahceResponseWithURL:requestURL
                                                    parameters:params];
@@ -332,7 +332,7 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
     return [self getWithUrl:url params:params headers:nil useCache:false refreshCache:false success:success fail:fail];
 }
 
-+ (SGTRequestOperation *)getWithUrl:(NSString *)url 
++ (SGTRequestOperation *)getWithUrl:(NSString *)url
                            useCache:(BOOL)useCache
                        refreshCache:(BOOL)refreshCache
                             success:(SGTResponseSuccess)success
@@ -349,7 +349,7 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
     return [self getWithUrl:url params:params headers:nil useCache:useCache refreshCache:refreshCache success:success fail:fail];
 }
 
-+ (SGTRequestOperation *)getWithUrl:(NSString *)url 
++ (SGTRequestOperation *)getWithUrl:(NSString *)url
                              params:(id)params
                             headers:(NSDictionary *)headers
                            useCache:(BOOL)useCache
@@ -396,7 +396,7 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
     if ([self shouldEncode]) {
         url = [self encodeUrl:url];
     }
-
+    
     AFHTTPSessionManager *manager = [self sessionManager];
     NSURLSessionDataTask *op = [manager POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSData *imageData = UIImageJPEGRepresentation(image, 1);
@@ -658,7 +658,8 @@ static inline NSString *cachePath() {
     if (([url hasPrefix:@"http://"] || [url hasPrefix:@"https://"]) && queries.length > 1) {
         if ([url rangeOfString:@"?"].location != NSNotFound
             || [url rangeOfString:@"#"].location != NSNotFound) {
-            url = [NSString stringWithFormat:@"%@%@", url, queries];
+            queries = [queries substringFromIndex:1];
+            url = [NSString stringWithFormat:@"%@?%@", [url componentsSeparatedByString:@"?"].firstObject, queries];
         } else {
             queries = [queries substringFromIndex:1];
             url = [NSString stringWithFormat:@"%@?%@", url, queries];
@@ -681,10 +682,10 @@ static AFHTTPSessionManager *manager = nil;
         [NSURLCache setSharedURLCache:sharedCache];
         
         manager = [[AFHTTPSessionManager alloc]
-                                         initWithBaseURL:[NSURL URLWithString:[self baseUrl]]];
+                   initWithBaseURL:[NSURL URLWithString:[self baseUrl]]];
         
         manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-
+        
         if (kHeaderSerializer == SGTNetRequestTypeJSON) {
             AFJSONRequestSerializer *headSerializer = [AFJSONRequestSerializer serializer];
             [headSerializer setTimeoutInterval:10];
@@ -715,16 +716,16 @@ static AFHTTPSessionManager *manager = nil;
 
 + (void)logWithSuccessResponse:(id)response url:(NSString *)url params:(NSDictionary *)params {
     DebugLog(@"\nabsoluteUrl: %@\n params:%@\n response:%@\n\n",
-              url,
-              params,
-              response);
+             url,
+             params,
+             response);
 }
 
 + (void)logWithFailError:(NSError *)error url:(NSString *)url params:(NSDictionary *)params {
     DebugLog(@"\nabsoluteUrl: %@\n params:%@\n errorInfos:%@\n\n",
-              url,
-              params,
-              [error localizedDescription]);
+             url,
+             params,
+             [error localizedDescription]);
 }
 
 + (NSString *)encodeUrl:(NSString *)url {
