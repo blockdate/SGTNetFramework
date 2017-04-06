@@ -1,14 +1,14 @@
 Pod::Spec.new do |s|
 
   s.name         = "SGTNetworking"
-  s.version      = "2.0.3"
+  s.version      = "2.0.4"
   s.summary      = "This is a private pod sp. provide Network function."
 
   s.description  = <<-DESC
   This is a private Podspec. Provide network function. Base on AFNetworking and ReactiveCocoa
                    DESC
 
-  s.homepage     = "https://bitbucket.org/sgtfundation/sgtnetframework"
+  s.homepage     = "https://github.com/blockdate/SGTNetFramework"
 
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 
 
 
-  s.source       = { :git => "https://bitbucket.org/sgtfundation/sgtnetframework.git", :tag => s.version.to_s }
+  s.source       = { :git => "https://github.com/blockdate/SGTNetFramework.git", :tag => s.version.to_s }
 
 
 
