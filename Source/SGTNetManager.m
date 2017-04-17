@@ -237,7 +237,7 @@ static AFNetworkReachabilityStatus _netStatue = AFNetworkReachabilityStatusUnkno
     void (^failureHandle)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull) = ^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[self allTasks] removeObject:task];
         
-        if ([error code] < 0 && useCache) {// 获取缓存
+        if ([error code] < 0 && useCache && !refreshCache) {// 获取缓存
             id response = [SGTNetManager cahceResponseWithURL:requestURL
                                                    parameters:params];
             if (response) {
