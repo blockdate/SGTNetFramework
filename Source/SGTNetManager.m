@@ -593,6 +593,41 @@ static inline NSString *cachePath() {
     return absoluteUrl;
 }
 
++ (NSString *)_requestURLFromUrl:(NSString *)url {
+    NSString *requestURL = [self _absoluteUrlWithPath:url];
+    
+    if ([self baseUrl] == nil) {
+        if ([NSURL URLWithString:url] == nil) {
+            DebugLog(@"URLString无效，无法生成URL。可能是URL中有中文，请尝试Encode URL,URL:%@",url);
+            return nil;
+        }
+    } else {
+        NSURL *absoluteURL = [NSURL URLWithString:requestURL];
+        
+        if (absoluteURL == nil) {
+            DebugLog(@"URLString无效，无法生成URL。可能是URL中有中文，请尝试Encode ,URL:%@",url);
+            return nil;
+        }
+    }
+    return requestURL;
+}
+
++ (NSString *)md5_string:(NSString *)string {
+    if (string == nil || [string length] == 0) {
+        return nil;
+    }
+    
+    unsigned char digest[CC_MD5_DIGEST_LENGTH], i;
+    CC_MD5([string UTF8String], (int)[string lengthOfBytesUsingEncoding:NSUTF8StringEncoding], digest);
+    NSMutableString *ms = [NSMutableString string];
+    
+    for (i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
+        [ms appendFormat:@"%02x", (int)(digest[i])];
+    }
+    
+    return [ms copy];
+}
+
 static NSArray<NSString *> *p_ignoreCacheHeaders ;
 + (void)updateIgnoreCachedParamKeys:(NSArray<NSString *> *)ignoreParams {
     p_ignoreCacheHeaders = ignoreParams;
