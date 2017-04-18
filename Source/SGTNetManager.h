@@ -216,6 +216,12 @@ typedef NS_ENUM(NSInteger, SGTNetworkStatus) {
 + (void)updateResponseSerializer:(SGTNetRequestType)type;
 
 /**
+ * 设置当使用缓存时，忽略请求中的某些参数
+ * @param ignoreParams 忽略参数Key值列表
+ */
++ (void)updateIgnoreCachedParamKeys:(NSArray<NSString *> *)ignoreParams;
+
+/**
  *  @author block
  *
  *  获取指定地址的缓存时长, 返回-1表示文件未找到
