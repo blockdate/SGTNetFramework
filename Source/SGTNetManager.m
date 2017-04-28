@@ -669,10 +669,10 @@ static NSArray<NSString *> *p_ignoreCacheHeaders ;
                 queries = [queries substringFromIndex:1];
                 url = [NSString stringWithFormat:@"%@?%@", [url componentsSeparatedByString:@"?"].firstObject, queries];
             }else {
-                url = [url componentsSeparatedByString:@"?"].firstObject
+                url = [url componentsSeparatedByString:@"?"].firstObject;
             }
         } else {
-            if (queries.length > 1) {{
+            if (queries.length > 1) {
                 queries = [queries substringFromIndex:1];
                 url = [NSString stringWithFormat:@"%@?%@", url, queries];
             }
