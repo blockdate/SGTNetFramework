@@ -662,14 +662,20 @@ static NSArray<NSString *> *p_ignoreCacheHeaders ;
         queries = [queries substringToIndex:queries.length - 1];
     }
     
-    if (([url hasPrefix:@"http://"] || [url hasPrefix:@"https://"]) && queries.length > 1) {
+    if (([url hasPrefix:@"http://"] || [url hasPrefix:@"https://"])) {
         if ([url rangeOfString:@"?"].location != NSNotFound
             || [url rangeOfString:@"#"].location != NSNotFound) {
-            queries = [queries substringFromIndex:1];
-            url = [NSString stringWithFormat:@"%@?%@", [url componentsSeparatedByString:@"?"].firstObject, queries];
+            if (queries.length > 1) {
+                queries = [queries substringFromIndex:1];
+                url = [NSString stringWithFormat:@"%@?%@", [url componentsSeparatedByString:@"?"].firstObject, queries];
+            }else {
+                url = [url componentsSeparatedByString:@"?"].firstObject
+            }
         } else {
-            queries = [queries substringFromIndex:1];
-            url = [NSString stringWithFormat:@"%@?%@", url, queries];
+            if (queries.length > 1) {{
+                queries = [queries substringFromIndex:1];
+                url = [NSString stringWithFormat:@"%@?%@", url, queries];
+            }
         }
     }
     
