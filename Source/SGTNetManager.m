@@ -639,7 +639,14 @@ static NSArray<NSString *> *p_ignoreCacheHeaders ;
     }
     
     NSString *queries = @"";
-    for (NSString *key in params) {
+    
+    // 按照key的字符顺序对params进行排序
+    NSArray <NSString *>*keys = ((NSDictionary *)params).allKeys;
+    keys = [keys sortedArrayUsingComparator:^NSComparisonResult(NSString * obj1, NSString * obj2) {
+        return [obj1 compare:obj2];
+    }];
+    
+    for (NSString *key in keys) {
         id value = [params objectForKey:key];
         
         if ([value isKindOfClass:[NSDictionary class]]) {
