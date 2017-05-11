@@ -708,7 +708,7 @@ static AFHTTPSessionManager *manager = nil;
         
         if (kHeaderSerializer == SGTNetRequestTypeJSON) {
             AFJSONRequestSerializer *headSerializer = [AFJSONRequestSerializer serializer];
-            [headSerializer setTimeoutInterval:10];
+            [headSerializer setTimeoutInterval:20];
             manager.requestSerializer = headSerializer;
             manager.requestSerializer.stringEncoding = NSUTF8StringEncoding;
         }
